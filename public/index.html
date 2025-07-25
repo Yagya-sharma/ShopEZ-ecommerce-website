@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEZ</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div class="topbar">
+    <span class="menu-btn" onclick="openNav()">☰ ShopEZ</span>
+    <!-- Search Bar -->
+<div style="text-align:center; margin: 20px;">
+  <input type="text" id="search-input" placeholder="Search for products..." style="padding: 8px; width: 200px;">
+  <button id="search-btn" style="padding: 8px;">Search</button>
+</div>
+
+<!-- Display Search Results -->
+<div id="searchResults" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;"></div>
+    <div class="icons">
+      <a href="profile.html" class="btn-profile"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="my-orders.html">My order</a>
+    <a href="favourite.html"><span class="navbar-icons" id="favorite-icon"><i class="fa-regular fa-heart"></i>
+      <span id="fav-count">0</span>
+    </span></a>
+    <a href="cart.html" class="view-cart"><i class="fa-solid fa-cart-shopping"></i> View Cart</a>
+      <span onclick="openBrandFilter()"><i class="fa-solid fa-gear"></i></span>
+    </div>
+  </div>
+
+  <!-- Side Navigation -->
+  <div id="sideNavbar" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <h2>Categories</h2>
+    <ul>
+      <li><a href="#" class="category-filter" data-category="women">👗 Women's Fashion</a></li>
+      <li><a href="#" class="category-filter" data-category="women-footwear">👠 Women's Footwear</a></li>
+      <li><a href="#" class="category-filter" data-category="beauty">💄 Beauty Products</a></li>
+      <li><a href="#" class="category-filter" data-category="health">🧴 Health & Personal Care</a></li>
+      <li><a href="#" class="category-filter" data-category="home">🏠 Home & Kitchen</a></li>
+      <li><a href="#" class="category-filter" data-category="men">👕 Men's Fashion</a></li>
+      <li><a href="#" class="category-filter" data-category="men-footwear">👞 Men's Footwear</a></li>
+      <li><a href="#" class="category-filter" data-category="electronics">📱 Electronics</a></li>
+      <li><a href="#" class="category-filter" data-category="grocery">🛒 Grocery & Essentials</a></li>
+      <li><a href="#" class="category-filter" data-category="baby">🍼 Baby Products</a></li>
+    </ul>
+  </div>
+  <div id="overlay" onclick="closeNav()"></div>
+
+  <!-- Brand filter sidebar -->
+   <div id="brandSidebar" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeBrandFilter()">×</a>
+    <h2>Brands</h2>
+    <ul>
+      <li data-category="women"><label>Berrylush <input type="checkbox" /></label></li>
+      <li data-category="women"><label>Athena<input type="checkbox" /></label></li>
+      <li data-category="women"><label>DressBerry <input type="checkbox" /></label></li>
+      <li data-category="women-footwear"><label>Chumbak <input type="checkbox" /></label></li>
+      <li data-category="women-footwear"><label>Puma <input type="checkbox" /></label></li>
+      <li data-category="beauty"><label>MamaEarth <input type="checkbox" /></label></li>
+      <li data-category="beauty"><label>FACES CANADA<input type="checkbox" /></label></li>
+      <li data-category="health"><label>Tresemme <input type="checkbox" /></label></li>
+      <li data-category="health"><label>Lakme<input type="checkbox" /></label></li>
+      <li data-category="health"><label>NutriGlow<input type="checkbox" /></label></li>
+      <li data-category="home"><label>GOODHOMES <input type="checkbox" /></label></li>
+      <li data-category="men"><label>Roadster<input type="checkbox" /></label></li>
+      <li data-category="men-footwear"><label>Puma <input type="checkbox" /></label></li>
+      <li data-category="electronics"><label>OnePlus <input type="checkbox" /></label></li>
+      <li data-category="electronics"><label>Zeno <input type="checkbox" /></label></li>
+      <li data-category="grocery"><label>MCaffeine<input type="checkbox" /></label></li>
+      <li data-category="baby"><label>KOBBET <input type="checkbox" /></label></li>
+    </ul>
+  </div>
+  <div id="brandOverlay" onclick="closeBrandFilter()"></div>
+
+
+
+  <!-- Product Cards -->
+  <div class="product-container">
+
+    <div class="product-card" data-category="women">
+      <div class="on-sale">On Sale</div>
+     <div class="product-img"><img src="images/product1.png" alt="DressBerry Sweater"></div>
+      <p><strong>Brand:</strong> <b>DressBerry</b></p>
+      <p class="product-name">DressBerry Women Olive Green Ribbed Sweater</p>
+      <div class="price">
+        <span class="new-price">₹554</span>
+        <span class="old-price">₹1,849</span>
+        <span class="discount">(70% off)</span>
+      </div>
+      <div class="buttons">
+        
+        <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="6881df1690b958f4a4281922" class="buy">Buy Now</button>
+        <button onclick="addToCart('6881df1690b958f4a4281922')">Add to Cart</button>
+
+      </div>
+    </div>
+
+    <div class="product-card" data-category="women">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product2.png" alt="Yellow Dress"></div>
+      <p><strong>Brand:</strong> <b>Athena</b></p>
+      <p class="product-name">Athena Women Mustard Yellow Off Shoulder Dress</p>
+      <div class="price">
+        <span class="new-price">₹739</span>
+        <span class="old-price">₹2,399</span>
+        <span class="discount">(69% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="6881e3d890b958f4a4281924" class="buy">Buy Now</button>
+       <button onclick="addToCart('6881e3d890b958f4a4281924')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="women-footwear">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product3.png" alt="sandals"></div>
+      <p><strong>Brand:</strong> <b>Chumbak</b></p>
+      <p class="product-name">Chumbak Women Brown & White Comfort Sandals</p>
+      <div class="price">
+        <span class="new-price">₹286</span>
+        <span class="old-price">₹999</span>
+        <span class="discount">(71% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+        <button class="buy-now-btn" data-product-id="6881e41d90b958f4a4281926" class="buy">Buy Now</button>
+         <button onclick="addToCart('6881e41d90b958f4a4281926')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="women-footwear">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product4.png" alt="sneakers"></div>
+      <p><strong>Brand:</strong> <b>Puma</b></p>
+      <p class="product-name">Puma Women Urban Graphicster Sneakers</p>
+      <div class="price">
+        <span class="new-price">₹6,999</span>
+        <span class="old-price">₹8,999</span>
+        <span class="discount">(30% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="6881e46b90b958f4a4281928" class="buy">Buy Now</button>
+        <button onclick="addToCart('6881e46b90b958f4a4281928')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="beauty">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product5.png" alt="beauty-product"></div>
+      <p><strong>Brand:</strong> <b>MamaEarth</b></p>
+      <p class="product-name">MamaEarth rice water Face wash</p>
+      <div class="price">
+        <span class="new-price">₹242</span>
+        <span class="old-price">₹269</span>
+        <span class="discount">(10% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="6881e4d590b958f4a428192a" class="buy">Buy Now</button>
+        <button onclick="addToCart('6881e4d590b958f4a428192a')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="beauty">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product6.png" alt="nail-paint"></div>
+      <p><strong>Brand:</strong> <b>FACES CANADA</b></p>
+      <p class="product-name">FACES CANADA Tropical Treat Hi Shine Nail Enamel</p>
+      <div class="price">
+        <span class="new-price">₹149</span>
+        <span class="old-price">₹199</span>
+        <span class="discount">(25% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+        <button class="buy-now-btn" data-product-id="688337446db69e148a7534ed" class="buy">Buy Now</button>
+         <button onclick="addToCart('688337446db69e148a7534ed')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="health">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product7.png" alt="Tresemme"></div>
+      <p><strong>Brand:</strong> <b>Tresemme</b></p>
+      <p class="product-name">Tresemme Smooth & Shine Shampoo -580 ml</p>
+      <div class="price">
+        <span class="new-price">₹459</span>
+        <span class="old-price">₹850</span>
+        <span class="discount">(46% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="688338576db69e148a7534ef" class="buy">Buy Now</button>
+        <button onclick="addToCart('688338576db69e148a7534ef')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="health">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product8.png" alt="Loreal"></div>
+      <p><strong>Brand:</strong> <b>Lakme</b></p>
+      <p class="product-name">Lakmé 7% Niacinamide Complex Perfect Radiance Anti Pigmentation Serum 2X Brighter Skin  (30 ml)</p>
+      <div class="price">
+        <span class="new-price">₹486</span>
+        <span class="old-price">₹649</span>
+        <span class="discount">(25% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+        <button class="buy-now-btn" data-product-id="688338bb6db69e148a7534f1" class="buy">Buy Now</button>
+         <button onclick="addToCart('688338bb6db69e148a7534f1')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="health">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product9.png" alt="Hair cream"></div>
+      <p><strong>Brand:</strong> <b>NutriGlow</b></p>
+      <p class="product-name">NutriGlow Unisex White Hair Spa Protein Hair Cream 500 gm</p>
+      <div class="price">
+        <span class="new-price">₹235</span>
+        <span class="old-price">₹525</span>
+        <span class="discount">(55% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="6883396a6db69e148a7534f3" class="buy">Buy Now</button>
+        <button onclick="addToCart('6883396a6db69e148a7534f3')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="home">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product10.png" alt="GoodHomes"></div>
+      <p><strong>Brand:</strong> <b>GOODHOMES</b></p>
+      <p class="product-name">GOODHOMES Set of 2 Transparent Borosilicate Airtight Jars with Metal L..</p>
+      <div class="price">
+        <span class="new-price">₹248</span>
+        <span class="old-price">₹599</span>
+        <span class="discount">(59% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+        <button class="buy-now-btn" data-product-id="688339e96db69e148a7534f5" class="buy">Buy Now</button>
+         <button onclick="addToCart('688339e96db69e148a7534f5')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="home">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product11.png" alt="GoodHomes"></div>
+      <p><strong>Brand:</strong> <b>GOODHOMES</b></p>
+      <p class="product-name">GOODHOMES Set of 3 White & Navy Blue Printed Rectangular Melamine Serv...</p>
+      <div class="price">
+        <span class="new-price">₹767</span>
+        <span class="old-price">₹1,095</span>
+        <span class="discount">(29% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+      <button class="buy-now-btn" data-product-id="68833a476db69e148a7534f7" class="buy">Buy Now</button>
+       <button onclick="addToCart('68833a476db69e148a7534f7')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="men">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product12.png" alt="jeans"></div>
+      <p><strong>Brand:</strong> <b>Roadster</b></p>
+      <p class="product-name">Roadster Men Navy Blue Skinny Fit Mid-Rise Clean Look Stretchable Jeans...</p>
+      <div class="price">
+        <span class="new-price">₹935</span>
+        <span class="old-price">₹2,699</span>
+        <span class="discount">(60% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="68833a806db69e148a7534f9" class="buy">Buy Now</button>
+        <button onclick="addToCart('68833a806db69e148a7534f9')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="men">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product13.png" alt="Roadster"></div>
+      <p><strong>Brand:</strong> <b>Roadster</b></p>
+      <p class="product-name">Roadster Men Navy Blue Embossed Printed Round Neck T-shirt</p>
+      <div class="price">
+        <span class="new-price">₹484</span>
+        <span class="old-price">₹895</span>
+        <span class="discount">(60% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="68833ad36db69e148a7534fd" class="buy">Buy Now</button>
+        <button onclick="addToCart('68833ad36db69e148a7534fd')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="men-footwear">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product14.png" alt="shoes"></div>
+      <p><strong>Brand:</strong> <b>Puma</b></p>
+      <p class="product-name">Puma Men Black Mesh Propel 3D MU IDP Walking Shoes</p>
+      <div class="price">
+        <span class="new-price">₹1,200</span>
+        <span class="old-price">₹3,999</span>
+        <span class="discount">(69% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="68833b286db69e148a7534ff" class="buy">Buy Now</button>
+        <button onclick="addToCart('68833b286db69e148a7534ff')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="men-footwear">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product15.png" alt="Shoes"></div>
+      <p><strong>Brand:</strong> <b>Puma</b></p>
+      <p class="product-name">Puma Men Mesh Running Shoes</p>
+      <div class="price">
+        <span class="new-price">₹1,090</span>
+        <span class="old-price">₹3,999</span>
+        <span class="discount">(73% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="68833b686db69e148a753501" class="buy">Buy Now</button>
+        <button onclick="addToCart('68833b686db69e148a753501')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="electronics">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product16.png" alt="watch"></div>
+      <p><strong>Brand:</strong> <b>OnePlus</b></p>
+      <p class="product-name">OnePlus Watch 2R with Wear OS 4, Snapdragon W5 Chipset & Upto 100 hours battery life Smartwatch  (Gunmetal Gray Strap, Free Size)</p>
+      <div class="price">
+        <span class="new-price">₹17,999</span>
+        <span class="old-price">₹19,999</span>
+        <span class="discount">(10% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+        <button class="buy-now-btn" data-product-id="68833ba86db69e148a753503" class="buy">Buy Now</button>
+         <button onclick="addToCart('68833ba86db69e148a753503')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="electronics">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product17.png" alt="shaver"></div>
+      <p><strong>Brand:</strong> <b>Zeno</b></p>
+      <p class="product-name">Zeno volt NHT 1056 Trimmer Shaver For Men, Women  (Black)</p>
+      <div class="price">
+        <span class="new-price">₹416</span>
+        <span class="old-price">₹1,999</span>
+        <span class="discount">(79% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="68833bed6db69e148a753505" class="buy">Buy Now</button>
+        <button onclick="addToCart('68833bed6db69e148a753505')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="grocery">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product18.png" alt="Moisturizing"></div>
+      <p><strong>Brand:</strong> <b>MCaffeine</b></p>
+      <p class="product-name">MCaffeine Naked & Rich Deep Moisturizing Choco Body Butter 250g</p>
+      <div class="price">
+        <span class="new-price">₹550</span>
+        <span class="old-price">₹645</span>
+        <span class="discount">(14% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="68833c286db69e148a753507" class="buy">Buy Now</button>
+        <button onclick="addToCart('68833c286db69e148a753507')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="grocery">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product19.png" alt="Scrub"></div>
+      <p><strong>Brand:</strong> <b>MCaffeine</b></p>
+      <p class="product-name">MCaffeine Sustainable Unisex Naked & Raw Tan Removal Coffee Body Scrub..</p>
+      <div class="price">
+        <span class="new-price">₹364</span>
+        <span class="old-price">₹508</span>
+        <span class="discount">(28% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="68833c666db69e148a753509" class="buy">Buy Now</button>
+        <button onclick="addToCart('68833c666db69e148a753509')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="baby">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product20.png" alt="Kids"></div>
+      <p><strong>Brand:</strong> <b>KOBBET</b></p>
+      <p class="product-name">KOBBET Dancing Monkey Musical Toys for Tumble Toy with Voice Control Light & Sound Toys  (Multicolor)
+</p>
+      <div class="price">
+        <span class="new-price">₹248</span>
+        <span class="old-price">₹1,199</span>
+        <span class="discount">(79% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+        <button class="buy-now-btn" data-product-id="68833ce36db69e148a75350b" class="buy">Buy Now</button>
+         <button onclick="addToCart('68833ce36db69e148a75350b')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="baby">
+      <div class="on-sale">On Sale</div>
+      <div class="product-img"><img src="images/product21.png" alt="Kiddeo"></div>
+      <p><strong>Brand:</strong> <b>KOBBET</b></p>
+      <p class="product-name">KOBBET Dancing Cactus Toys For Voice Recording Repeats Toy Light & Sound Funny Play Toy  (Multicolor)</p>
+      <div class="price">
+        <span class="new-price">₹378</span>
+        <span class="old-price">₹1,099</span>
+        <span class="discount">(65% off)</span>
+      </div>
+      <div class="buttons">
+        <!-- <button onclick="addToFavorites('${product.name}')">Add to Favorites</button> -->
+         <button class="fav" data-product-id="64b0...">Add to Favorites</button>
+       <button class="buy-now-btn" data-product-id="68833d206db69e148a75350d" class="buy">Buy Now</button>
+        <button onclick="addToCart('68833d206db69e148a75350d')" class="cart">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+   <footer style="bottom: 0; width: 100%; background-color: #f5f5f5; text-align:right; padding: 10px 0; border-top: 1px solid #ccc;">
+  <button onclick="location.href='register.html'" style="margin: 5px; padding: 10px 15px;">Sign Up</button>
+  <button onclick="location.href='login.html'" style="margin: 5px; padding: 10px 15px;">Log In</button>
+  <button onclick="location.href='contact.html'" style="margin: 5px; padding: 10px 15px;">Contact</button>
+</footer>
+  <script src="script.js"></script>
+</body>
+</html>

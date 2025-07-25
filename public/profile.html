@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <style>
+    .profile-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.profile-sidebar {
+  width: 220px;
+  background: #f5f5f5;
+  padding: 20px;
+}
+
+.profile-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.profile-sidebar ul li {
+  margin: 15px 0;
+}
+
+.profile-sidebar a {
+  text-decoration: none;
+  color: #333;
+}
+
+.profile-content {
+  flex: 1;
+  padding: 30px;
+}
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <aside class="profile-sidebar">
+      <h2>Welcome, <span id="user-name">User</span></h2>
+      <ul>
+        <li><a href="profile.html">👤 Profile</a></li>
+        <li><a href="my-orders.html">📦 My Orders</a></li>
+        <li><a href="favourite.html">❤ Favorites</a></li>
+        <li><a href="settings.html">⚙ Settings</a></li>
+      </ul>
+    </aside>
+
+    <main class="profile-content">
+      <h1>My Profile</h1>
+      <div id="profile-info">
+        <!-- Filled by JS -->
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+  const userId = localStorage.getItem('userId');
+  if (!userId) {
+    alert('Please log in');
+    location.href = 'login.html';
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/users/${userId}`);
+    const user = await res.json();
+
+    document.getElementById('user-name').textContent = user.name;
+
+    const infoDiv = document.getElementById('profile-info');
+    infoDiv.innerHTML = `
+      <p><strong>Name:</strong> ${user.name}</p>
+      <p><strong>Email:</strong> ${user.email}</p>
+      <p><strong>Joined On:</strong> ${new Date(user.createdAt).toLocaleDateString()}</p>
+    `;
+  } catch (err) {
+    console.error('Failed to load user info:', err);
+  }
+
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    localStorage.clear();
+    location.href = 'login.html';
+  });
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <style>
+    form {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+form button {
+  padding: 10px;
+  margin-right: 10px;
+}
+  </style>
+</head>
+<body>
+  <h2>Account Settings</h2>
+
+  <form id="settings-form">
+    <label>Username:</label>
+    <input type="text" id="username" required><br>
+
+    <label>Email:</label>
+    <input type="email" id="email" required><br>
+
+    <label>Password:</label>
+    <input type="password" id="password" required><br>
+
+    <button type="submit">Save Changes</button>
+    <button type="button" id="delete-account">Delete Account</button>
+  </form>
+
+  <script>
+    const userId = "YOUR_USER_ID"; // Replace with actual logged-in user ID
+
+document.getElementById("settings-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const res = await fetch(`/api/settings/${userId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, email, password }),
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert("Settings updated!");
+    } else {
+      alert(data.error || "Failed to update");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
+  }
+});
+
+document.getElementById("delete-account").addEventListener("click", async () => {
+  if (!confirm("Are you sure you want to delete your account?")) return;
+
+  try {
+    const res = await fetch(`/api/settings/${userId}`, {
+      method: 'DELETE',
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert("Account deleted.");
+      window.location.href = "index.html";
+    } else {
+      alert(data.error || "Failed to delete account");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
+  }
+});
+  </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 2rem;
+  transition: background 0.3s ease;
+}
+
+.settings-container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+form label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 0.25rem;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 24px;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; width: 18px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .settings-container {
+  background: #1e1e1e;
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+}
+
+/* Theme Colors */
+body[data-theme="blue"] {
+  --accent: #007bff;
+}
+body[data-theme="pink"] {
+  --accent: #e83e8c;
+}
+body[data-theme="green"] {
+  --accent: #28a745;
+}
+
+body[data-theme] button {
+  background-color: var(--accent);
+}
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h1>Settings</h1>
+
+    <section class="profile-section">
+      <h2>Update Profile</h2>
+      <form id="profile-form">
+        <label>
+          Name:
+          <input type="text" placeholder="Enter your name">
+        </label>
+        <label>
+          Email:
+          <input type="email" placeholder="Enter your email">
+        </label>
+        <button type="submit">Save Changes</button>
+      </form>
+    </section>
+
+    <section class="preferences-section">
+      <h2>Preferences</h2>
+      <div class="setting-item">
+        <span>Dark Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <span>Notifications</span>
+        <label class="switch">
+          <input type="checkbox" checked>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="theme-section">
+      <h2>Theme Color</h2>
+      <select id="theme-selector">
+        <option value="default">Default</option>
+        <option value="blue">Blue</option>
+        <option value="pink">Pink</option>
+        <option value="green">Green</option>
+      </select>
+    </section>
+    <!-- Change Password Section -->
+<section class="security-section">
+  <h2>Security</h2>
+
+  <form id="change-password-form">
+    <label>
+      Current Password:
+      <input type="password" name="currentPassword" required>
+    </label>
+    <label>
+      New Password:
+      <input type="password" name="newPassword" required>
+    </label>
+    <button type="submit">Change Password</button>
+  </form>
+
+  <hr style="margin: 2rem 0;">
+
+  <!-- Delete Account -->
+  <button id="delete-account-btn" style="background-color: #e74c3c;">Delete Account</button>
+</section>
+  </div>
+
+  <script>
+    document.getElementById("darkModeToggle").addEventListener("change", function () {
+      document.body.classList.toggle("dark-mode", this.checked);
+    });
+
+    document.getElementById("theme-selector").addEventListener("change", function () {
+      document.body.setAttribute("data-theme", this.value);
+    });
+
+  // Change Password Submit
+  document.getElementById("change-password-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const form = new FormData(this);
+    const data = {
+      currentPassword: form.get("currentPassword"),
+      newPassword: form.get("newPassword"),
+    };
+
+    const res = await fetch("/api/user/change-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+    alert(result.message);
+  });
+
+  // Delete Account
+  document.getElementById("delete-account-btn").addEventListener("click", async () => {
+    if (confirm("Are you sure you want to delete your account? This cannot be undone.")) {
+      const res = await fetch("/api/user/delete", {
+        method: "DELETE",
+      });
+      const result = await res.json();
+      alert(result.message);
+      if (res.ok) window.location.href = "/register.html";
+    }
+  });
+  </script>
+</body>
+</html>

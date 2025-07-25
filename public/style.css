@@ -1,0 +1,270 @@
+ * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f2f2f2;
+    }
+
+    /* Topbar */
+    .topbar {
+      background-color: #ff9900;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 20px;
+      position: relative;
+      z-index: 10;
+    }
+    .icons{
+      display:flex;
+      gap:2rem;
+      font-size:18px;
+    }
+.icons span {
+      margin-left: 15px;
+      cursor: pointer;
+      font-size:18px;
+    }
+
+    .icons a{
+        text-decoration: none;
+        color: #eee;
+    }
+    #favorite-icon {
+  position: relative;
+  font-size: 18px;
+  cursor: pointer;
+}
+.view-cart{
+  color:white;
+  font-size: 18px;
+}
+
+#fav-count {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+    /* Sidebar */
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      background-color: white;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+      z-index: 1001;
+      box-shadow: -2px 0 6px rgba(0,0,0,0.2);
+    }
+
+    #sideNavbar {
+      left: 0;
+    }
+
+    #brandSidebar {
+      right: 0;
+    }
+
+.sidenav h2 {
+      padding: 10px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sidenav ul {
+      list-style: none;
+      padding: 0 20px;
+    }
+
+    .sidenav li {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    .sidenav li a{
+      text-decoration: none;
+      color:black;
+    }
+
+    .sidenav label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .closebtn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+ #overlay, #brandOverlay {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+    /* Product Cards */
+
+.product-container {
+  padding:20x;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product-card {
+    margin:15px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-sizing: border-box;
+  border:1px solid #ccc;
+  width:45%;
+}
+
+.product-card img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  height: 450px;
+}
+.product-img{
+    text-align: center;
+}
+
+
+.product-card .on-sale {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+} 
+
+.price {
+  margin: 10px 0;
+}
+
+.new-price {
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+  margin-left: 10px;
+}
+
+.discount {
+  color: red;
+  margin-left: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+   gap: 10px; 
+} 
+
+ .fav {
+  flex: 1;
+  background-color: white;
+  border: 1px solid #f7a400;
+  color: #f7a400;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buy-now-btn {
+  flex: 1;
+  background-color: #f7a400;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+} 
+
+@media screen and (max-width:768px){
+    .product-card{
+        width:100%;
+    }
+}
+
+footer {
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  text-align:center;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+}
+
+footer button {
+  margin: 0 10px;
+  padding: 10px 15px;
+  border: none;
+  background-color:#ff9900;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: right;
+  /* position: sticky; */
+}
+
+footer button:hover {
+  background-color:#d0aa72;
+}
+
+#searchInput {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 20px;
+}
+/* #product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 200px;
+  border-radius: 10px;
+} */
+ #product-container{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap:20px;
+  padding:20px;
+ }
