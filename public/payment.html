@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      padding: 20px;
+    }
+
+    .payment-container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .payment-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .payment-methods {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .payment-methods button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #f1f1f1;
+      cursor: pointer;
+    }
+
+    .payment-methods button.active {
+      background: #007bff;
+      color: white;
+    }
+
+    .summary {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h2>Secure Payment</h2>
+
+    <div class="summary">
+      <p><strong>Total Amount:</strong> ₹ <span id="total-price">0</span></p>
+    </div>
+
+    <div class="payment-methods">
+      <button id="cardBtn" class="active">Card</button>
+      <button id="upiBtn">UPI</button>
+    </div>
+
+    <form id="payment-form">
+      <div id="card-details">
+        <label for="cardName">Name on Card</label>
+        <input type="text" id="cardName" required />
+
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" maxlength="16" required />
+
+        <label for="expiry">Expiry Date</label>
+        <input type="text" id="expiry" placeholder="MM/YY" required />
+
+        <label for="cvv">CVV</label>
+        <input type="number" id="cvv" maxlength="3" required />
+      </div>
+
+      <div id="upi-details" style="display: none;">
+        <label for="upiId">UPI ID</label>
+        <input type="text" id="upiId" placeholder="example@upi" />
+      </div>
+
+      <button type="submit" class="btn">Pay Now</button>
+    </form>
+  </div>
+
+  <script>
+    const totalPriceElement = document.getElementById('total-price');
+    const paymentForm = document.getElementById('payment-form');
+    const cardDetails = document.getElementById('card-details');
+    const upiDetails = document.getElementById('upi-details');
+    const cardBtn = document.getElementById('cardBtn');
+    const upiBtn = document.getElementById('upiBtn');
+
+    // Set total price from localStorage (set this value when cart is confirmed)
+    const total = localStorage.getItem('cartTotal') || 0;
+    totalPriceElement.textContent = total;
+
+    cardBtn.addEventListener('click', () => {
+      cardBtn.classList.add('active');
+      upiBtn.classList.remove('active');
+      cardDetails.style.display = 'block';
+      upiDetails.style.display = 'none';
+    });
+
+    upiBtn.addEventListener('click', () => {
+      upiBtn.classList.add('active');
+      cardBtn.classList.remove('active');
+      cardDetails.style.display = 'none';
+      upiDetails.style.display = 'block';
+    });
+
+    paymentForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Payment successful! Thank you for shopping.");
+      // Clear cart if needed
+      localStorage.removeItem('cart');
+      localStorage.removeItem('cartTotal');
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
