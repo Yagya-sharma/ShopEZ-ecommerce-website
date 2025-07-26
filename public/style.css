@@ -44,6 +44,14 @@
   color:white;
   font-size: 18px;
 }
+.cart{
+  background-color: white;
+  border: 1px solid #f7a400;
+  color: #f7a400;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 #fav-count {
   position: absolute;
