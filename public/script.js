@@ -178,7 +178,7 @@ searchInput.addEventListener("input", () => {
 document.querySelectorAll('.buy-now-btn').forEach(button => {
   button.addEventListener('click', async (e) => {
     const productId = e.target.dataset.productId;
-    const userId ="6883455af804ac26842e0f88"; 
+    const userId="6881df1690b958f4a4281922";
 
     try {
       const res = await fetch('/api/order', {
